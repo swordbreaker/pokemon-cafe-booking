@@ -16,15 +16,6 @@ I also added uv support and a Python script to run the code without the need for
 uv sync
 ```
 
-3. Alter the variables at the bottom of the script
-4. Run the scripts with
-
-```shell
-uv run pokemon-cafe-reservation.py
-# or
-uv run kirby-cafe-reservation.py
-```
-
 ## Usage
 
 ### Pokémon Cafe Reservation Script
