@@ -1,4 +1,4 @@
-# Pokémon Cafe Reservation System
+# Pokémon Cafe and Kirby Cafe Reservation System
 
 Original is from https://github.com/cloudsystemsarchitect/pokemon-cafe-booking
 I altered the code to work with Windows and Edge, and to work with the updated website (07.02.2024).
