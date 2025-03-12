@@ -5,7 +5,9 @@ I altered the code to work with Windows and Edge, and to work with the updated w
 
 The Pokémon Cafe reservation site now has a captcha. The script now waits for the user to fill out the captcha and then continues the automation process.
 
-I also added uv support and a Python script to run the code without the need for Jupyter notebooks:
+I also added uv support and a Python script to run the code without the need for Jupyter notebooks.
+
+## Installation
 
 1. Install [uv](https://docs.astral.sh/uv/getting-started/)
 2. Set up the workspace with
