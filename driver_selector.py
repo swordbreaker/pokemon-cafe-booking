@@ -3,10 +3,10 @@ from selenium.webdriver.edge.options import Options
 
 
 def get_driver(driver_name: str):
-    '''Get the web driver based on the driver name
+    """Get the web driver based on the driver name
     Keyword arguments:
     driver_name -- name of the web driver to use ('chrome', 'edge', 'firefox', 'safari')
-    '''
+    """
     if driver_name.lower() == "chrome":
         return webdriver.Chrome()
     elif driver_name.lower() == "edge":
@@ -19,4 +19,5 @@ def get_driver(driver_name: str):
         return webdriver.Safari()
     else:
         raise ValueError(
-            "Invalid driver name. Choose 'chrome', 'edge', 'firefox', or 'safari'.")
+            "Invalid driver name. Choose 'chrome', 'edge', 'firefox', or 'safari'."
+        )
