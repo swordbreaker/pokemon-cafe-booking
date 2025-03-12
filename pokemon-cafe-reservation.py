@@ -6,14 +6,16 @@ from selenium.webdriver.edge.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import argparse
+from driver_selector import get_driver
 
 
-def create_booking(day_of_month: int, num_of_guests: int, location: str):
+def create_booking(day_of_month: int, num_of_guests: int, location: str, driver_name: str):
     '''Create a reservation for Pokemon Cafe in Tokyo or Osaka
     Keyword arguments:
     day_of_month -- day of the month to book
     num_of_guests -- number of guests to book (1-8)
     location -- location of the cafe ('Tokyo' or 'Osaka')
+    driver_name -- name of the web driver to use ('chrome', 'edge', 'firefox', 'safari')
     '''
     if location == "Tokyo":
         website = "https://reserve.pokemon-cafe.jp/"
@@ -22,10 +24,7 @@ def create_booking(day_of_month: int, num_of_guests: int, location: str):
     else:
         raise ValueError("Invalid location. Choose 'Tokyo' or 'Osaka'.")
 
-    edge_options = Options()
-    edge_options.add_experimental_option("detach", True)
-    driver = webdriver.Edge(options=edge_options)
-
+    driver = get_driver(driver_name)
     driver.get(website)
 
     try:
@@ -75,6 +74,7 @@ if __name__ == "__main__":
     day_of_month = '10'
     num_of_guests = 2
     location = 'Tokyo'
+    driver_name = 'edge'
 
     parser = argparse.ArgumentParser(
         description='Create a reservation for Pokemon Cafe.')
@@ -86,8 +86,11 @@ if __name__ == "__main__":
                         'Tokyo', 'Osaka'], help='Location of the cafe (Tokyo or Osaka)', default=location, required=False)
     parser.add_argument('--iterations', type=int,
                         help='Number of iterations to run the booking', default=num_iterations, required=False)
+    parser.add_argument('--driver', type=str, choices=[
+                        'chrome', 'edge', 'firefox', 'safari'], help='Web driver to use (chrome, edge, firefox, or safari)', default=driver_name, required=False)
 
     args = parser.parse_args()
 
     for _ in range(args.iterations):
-        create_booking(args.day_of_month, args.num_of_guests, args.location)
+        create_booking(args.day_of_month, args.num_of_guests,
+                       args.location, args.driver)

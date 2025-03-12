@@ -4,18 +4,17 @@ from selenium.webdriver.edge.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import argparse
+from driver_selector import get_driver
 
 
-def create_booking(num_of_guests: int):
+def create_booking(num_of_guests: int, driver_name: str):
     '''Create a reservation for Kirby Cafe in Tokyo
     Keyword arguments:
-    month -- month to book
     num_of_guests -- number of guests to book
+    driver_name -- name of the web driver to use ('chrome', 'edge', 'firefox', 'safari')
     '''
     website = "https://kirbycafe-reserve.com/guest/tokyo/"
-    edge_options = Options()
-    edge_options.add_experimental_option("detach", True)
-    driver = webdriver.Edge(options=edge_options)
+    driver = get_driver(driver_name)
     driver.get(website)
 
     try:
@@ -49,6 +48,7 @@ if __name__ == "__main__":
     # Default parameters
     num_of_guests = 2
     iterations = 1
+    driver_name = 'edge'
 
     parser = argparse.ArgumentParser(
         description='Create a reservation for Kirby Cafe.')
@@ -56,8 +56,10 @@ if __name__ == "__main__":
                         help='Number of guests to book', default=num_of_guests, required=False)
     parser.add_argument('--iterations', type=int,
                         help='Number of iterations to run the booking', default=iterations, required=False)
+    parser.add_argument('--driver', type=str, choices=[
+                        'chrome', 'edge', 'firefox', 'safari'], help='Web driver to use (chrome, edge, firefox, or safari)', default=driver_name, required=False)
 
     args = parser.parse_args()
 
     for _ in range(args.iterations):
-        create_booking(args.num_of_guests)
+        create_booking(args.num_of_guests, args.driver)

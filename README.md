@@ -24,12 +24,12 @@ The `pokemon-cafe-reservation.py` script automates the booking process for the P
 
 #### Steps to Use:
 
-1. Ensure you have the necessary dependencies installed, including Selenium and the Edge WebDriver.
+1. Ensure you have the necessary dependencies installed and including Selenium
 2. Open a terminal and navigate to the directory containing the script.
 3. Run the script with the desired parameters:
 
 ```shell
-uv run pokemon-cafe-reservation.py --day_of_month <day> --num_of_guests <guests> --location <location> --iterations <iterations>
+uv run pokemon-cafe-reservation.py --day_of_month <day> --num_of_guests <guests> --location <location> --iterations <iterations> --driver <driver>
 ```
 
 #### Parameters:
@@ -38,11 +38,12 @@ uv run pokemon-cafe-reservation.py --day_of_month <day> --num_of_guests <guests>
 - `--num_of_guests`: The number of guests to book (1-8).
 - `--location`: The location of the cafe ('Tokyo' or 'Osaka').
 - `--iterations`: The number of iterations to run the booking (default is 2).
+- `--driver`: The web driver to use ('chrome', 'edge', 'firefox', 'safari'). Note: Only tested with Edge.
 
 Example:
 
 ```shell
-uv run pokemon-cafe-reservation.py --day_of_month 10 --num_of_guests 2 --location Tokyo --iterations 2
+uv run pokemon-cafe-reservation.py --day_of_month 10 --num_of_guests 2 --location Tokyo --iterations 2 --driver edge
 ```
 
 The script will prompt you to solve a CAPTCHA manually before proceeding with the automated booking process.
@@ -53,21 +54,22 @@ The `kirby-cafe-reservation.py` script automates the booking process for the Kir
 
 #### Steps to Use:
 
-1. Ensure you have the necessary dependencies installed, including Selenium and the Edge WebDriver.
+1. Ensure you have the necessary dependencies installed, including Selenium and the WebDriver for your chosen browser.
 2. Open a terminal and navigate to the directory containing the script.
 3. Run the script with the desired parameters:
 
 ```shell
-python kirby-cafe-reservation.py --num_of_guests <guests> --iterations <iterations>
+python kirby-cafe-reservation.py --num_of_guests <guests> --iterations <iterations> --driver <driver>
 ```
 
 #### Parameters:
 
 - `--num_of_guests`: The number of guests to book.
 - `--iterations`: The number of iterations to run the booking (default is 1).
+- `--driver`: The web driver to use ('chrome', 'edge', 'firefox', 'safari'). Note: Only tested with Edge.
 
 Example:
 
 ```shell
-python kirby-cafe-reservation.py --num_of_guests 2 --iterations 1
+python kirby-cafe-reservation.py --num_of_guests 2 --iterations 1 --driver edge
 ```
