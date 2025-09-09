@@ -1,2 +1,3 @@
 msedgedriver.exe
 .venv/
+__pycache__/

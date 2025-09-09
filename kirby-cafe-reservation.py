@@ -4,13 +4,21 @@ import argparse
 from driver_selector import get_driver
 
 
-def create_booking(num_of_guests: int, driver_name: str):
+def create_booking(
+    num_of_guests: int, driver_name: str, location: str = "tokyo"
+) -> None:
     """Create a reservation for Kirby Cafe in Tokyo
     Keyword arguments:
     num_of_guests -- number of guests to book
     driver_name -- name of the web driver to use ('chrome', 'edge', 'firefox', 'safari')
+    location -- location of the Kirby Cafe ('tokyo' or 'osaka')
     """
-    website = "https://kirbycafe-reserve.com/guest/tokyo/"
+
+    if location == "osaka":
+        website = "https://osaka.kirbycafe-reserve.com/guest/osaka/"
+    else:
+        website = "https://kirbycafe-reserve.com/guest/tokyo/"
+
     driver = get_driver(driver_name)
     driver.get(website)
 
@@ -44,7 +52,7 @@ def create_booking(num_of_guests: int, driver_name: str):
 if __name__ == "__main__":
     # Default parameters
     num_of_guests = 2
-    iterations = 1
+    iterations = 2
     driver_name = "edge"
 
     parser = argparse.ArgumentParser(description="Create a reservation for Kirby Cafe.")
@@ -71,7 +79,16 @@ if __name__ == "__main__":
         required=False,
     )
 
+    parser.add_argument(
+        "--location",
+        type=str,
+        choices=["tokyo", "osaka"],
+        help="Location of the Kirby Cafe (tokyo or osaka)",
+        default="tokyo",
+        required=False,
+    )
+
     args = parser.parse_args()
 
     for _ in range(args.iterations):
-        create_booking(args.num_of_guests, args.driver)
+        create_booking(args.num_of_guests, args.driver, args.location)
